@@ -4,5 +4,7 @@ publish:
 	npm publish --dry-run
 lint:
 	npx eslint .
-gendiff:
-	node src/gendiff.js
+gendiff -h:
+	node bin/gendiff.js
+link:
+	sudo npm link
