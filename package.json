@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "hexlet",
   "main": "index.js",
+  "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
@@ -10,7 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
     "url": "git+https://github.com/d1abetik/frontend-project-46.git"
   },
   "author": "",
@@ -20,7 +20,13 @@
   },
   "homepage": "https://github.com/d1abetik/frontend-project-46#readme",
   "dependencies": {
-    "commander": "^10.0.1"
+    "commander": "^10.0.1",
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "lodash": "^4.17.21"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^20.1.4"
+  }
 }
