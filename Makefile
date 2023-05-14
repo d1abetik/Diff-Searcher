@@ -8,3 +8,5 @@ gendiff -h:
 	node bin/gendiff.js
 link:
 	sudo npm link
+say-hello:
+	echo 'Hello, world!'

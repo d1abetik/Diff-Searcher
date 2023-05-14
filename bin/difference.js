@@ -17,12 +17,14 @@ const compare = (obj1, obj2) => {
 const stringifyObj = (obj) => {
   const data = Object.keys(obj);
   const res = data.reduce((acc, item) => {
-    if (Array.isArray(obj[item])) return `${acc} 
-    - ${item}: ${obj[item][0]} 
+    if (Array.isArray(obj[item])) {
+      return `${acc}
+    - ${item}: ${obj[item][0]}
     + ${item}: ${obj[item][1]}`;
+    }
     return `${acc} 
     ${item}: ${obj[item]}`;
-  }, ``);
+  }, '');
   return `{ ${res} 
 }`;
 };
