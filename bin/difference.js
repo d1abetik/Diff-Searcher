@@ -11,6 +11,7 @@ const compare = (obj1, obj2) => {
     } else if (_.has(obj1, item)) return { ...acc, [`- ${item}`]: obj1[item] };
     return { ...acc, [`+ ${item}`]: obj2[item] };
   }, {});
+  console.log(res);
   return res;
 };
 
@@ -37,4 +38,7 @@ const difference = (filepath1, filepath2) => {
   console.log(result);
 };
 
-export default difference;
+export { difference,
+  compare,
+  stringifyObj,
+};
