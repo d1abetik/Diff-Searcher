@@ -1,3 +1,3 @@
-import difference from "./difference.js";
+import difference from './difference.js';
 
 export default difference;
