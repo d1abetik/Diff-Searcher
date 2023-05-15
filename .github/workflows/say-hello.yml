@@ -1,27 +1,16 @@
 name: ActionTests
-on:
-  - push
-
-env:
-  CI: true
+on: [push]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+      - uses: actions/setup-node@v3
       - run: make install
       - run: make lint
-      - run: make test
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.3
       

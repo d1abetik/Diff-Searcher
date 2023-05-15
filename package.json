@@ -2,30 +2,16 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "hexlet",
-  "main": "index.js",
+  "main": "bin/gendiff.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
-  "simple-git-hooks": {
-    "pre-push": "make link"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": ">=14"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/d1abetik/frontend-project-46.git"
+    "test": "jest"
   },
   "author": "Michael Chechegov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/d1abetik/frontend-project-46/issues"
-  },
-  "homepage": "https://github.com/d1abetik/frontend-project-46#readme",
   "dependencies": {
     "commander": "^10.0.1",
     "eslint": "^8.40.0",

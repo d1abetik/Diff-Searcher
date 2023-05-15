@@ -11,7 +11,6 @@ const compare = (obj1, obj2) => {
     } else if (_.has(obj1, item)) return { ...acc, [`- ${item}`]: obj1[item] };
     return { ...acc, [`+ ${item}`]: obj2[item] };
   }, {});
-  console.log(res);
   return res;
 };
 
@@ -19,16 +18,18 @@ const stringifyObj = (obj) => {
   const data = Object.keys(obj);
   const res = data.reduce((acc, item) => {
     if (Array.isArray(obj[item])) {
-      return `${acc}
-    - ${item}: ${obj[item][0]}
-    + ${item}: ${obj[item][1]}`;
+      return `${acc}\n\t- ${item}: ${obj[item][0]}\n\t+ ${item}: ${obj[item][1]}`;
     }
-    return `${acc} 
-    ${item}: ${obj[item]}`;
+    return `${acc} \n\t${item}: ${obj[item]}`;
   }, '');
-  return `{ ${res} 
-}`;
+  return `{ ${res} \n}`;
 };
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const difference = (filepath1, filepath2) => {
   const obj1 = JSON.parse(fs.readFileSync(path.resolve(filepath1)));
