@@ -2,15 +2,11 @@ import _ from 'lodash';
 
 const compare = (obj1, obj2) => {
   const keys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)));
-  console.log(keys);
   const res = keys.reduce((acc, item) => {
-    // console.log(item);
     if (_.has(obj1, item) && _.has(obj2, item)) {
       if (obj1[item] === obj2[item]) return { ...acc, [item]: obj1[item] };
-      // console.log({ ...acc, [item]: [obj1[item], obj2[item]] });
       return { ...acc, [item]: [obj1[item], obj2[item]] };
     } else if (_.has(obj1, item)) return { ...acc, [`- ${item}`]: obj1[item] };
-    // console.log({ ...acc, [`+ ${item}`]: obj2[item] });
     return { ...acc, [`+ ${item}`]: obj2[item] };
   }, {});
   return res;
