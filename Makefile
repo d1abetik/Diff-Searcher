@@ -8,7 +8,9 @@ gendiff -h:
 	node bin/gendiff.js
 link:
 	sudo npm link
-say-hello:
-	echo 'Hello, world!'
 test:
-	npx jest .
+	npm test
+test-coverage:
+	npm test -- --coverage --coverageProvider=v8
+fix:
+	npx eslint . --fix
