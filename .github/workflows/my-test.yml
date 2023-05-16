@@ -8,14 +8,16 @@ jobs:
 
     steps:
       - name: My AutoTest-coverage
-        env:
+        uses: ${{TEST_HUB}}
+        with:
           CC_TEST_REPORTER_DIABETIK: ${{ secrets.CC_TEST_REPORTER_DIABETIK }}
-          FIRST_NAME: Mikhail
-          LAST_NAME: Chechegov
+          BRANCH: main
+          CLEAN: true
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: make install
       - run: make lint
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.3
+      - run: npx jest .
       
