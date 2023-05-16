@@ -10,3 +10,5 @@ link:
 	sudo npm link
 say-hello:
 	echo 'Hello, world!'
+test:
+	npx jest .
