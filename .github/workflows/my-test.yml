@@ -8,9 +8,8 @@ jobs:
 
     steps:
       - name: My AutoTest-coverage
-        uses: ${{TEST_HUB}}
         with:
-          CC_TEST_REPORTER_DIABETIK: ${{ secrets.CC_TEST_REPORTER_DIABETIK }}
+          TEST_HUB: ${{ secrets.TEST_HUB }}
           BRANCH: main
           CLEAN: true
       - uses: actions/checkout@v3
