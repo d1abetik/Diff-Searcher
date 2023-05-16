@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import difference from '../src/index.js';
+import { difference, objDiff } from '../src/index.js';
 import { compare, stringifyObj } from '../src/difference.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +12,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const result = readFile('testResult.txt');
+
 const obj1 = {
   host: 'hexlet.io',
   timeout: 50,
@@ -42,4 +43,12 @@ test('gendiff', () => {
   const filepath3 = getFixturePath('file1.json');
   const filepath4 = getFixturePath('file2.json');
   expect(difference(filepath3, filepath4)).toEqual(result);
+});
+
+test('objDiff', () => {
+  const filepath1 = 'file1Test.yml';
+  const filepath2 = 'file2Test.yml';
+  expect(objDiff(filepath1, filepath2)).toEqual(result);
+
+  expect(objDiff('{}', '{}')).toEqual('{  \n}\n');
 });

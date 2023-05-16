@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import difference from '../src/index.js';
+import { objDiff } from '../src/index.js';
 
 const program = new Command();
 
@@ -12,6 +12,6 @@ program
   .arguments('<filepath1>', 'type path to your first file')
   .arguments('<filepath2>', 'type path to your second file')
   .action((path1, path2) => {
-    difference(path1, path2);
+    objDiff(path1, path2);
   });
 program.parse(process.argv);
