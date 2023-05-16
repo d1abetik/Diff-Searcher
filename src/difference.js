@@ -6,7 +6,8 @@ const compare = (obj1, obj2) => {
     if (_.has(obj1, item) && _.has(obj2, item)) {
       if (obj1[item] === obj2[item]) return { ...acc, [item]: obj1[item] };
       return { ...acc, [item]: [obj1[item], obj2[item]] };
-    } else if (_.has(obj1, item)) return { ...acc, [`- ${item}`]: obj1[item] };
+    }
+    if (_.has(obj1, item)) return { ...acc, [`- ${item}`]: obj1[item] };
     return { ...acc, [`+ ${item}`]: obj2[item] };
   }, {});
   return res;

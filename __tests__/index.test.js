@@ -13,12 +13,12 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const result = readFile('testResult.txt');
 const obj1 = {
-  'host': 'hexlet.io',
-  'timeout': 50,
-  'proxy': '123.234.53.22',
-  'follow': false,
+  host: 'hexlet.io',
+  timeout: 50,
+  proxy: '123.234.53.22',
+  follow: false,
 };
-const obj2 = { 'timeout': 20, 'verbose': true, 'host': 'hexlet.io' };
+const obj2 = { timeout: 20, verbose: true, host: 'hexlet.io' };
 
 test('differenceSteps', () => {
   expect(compare(obj1, obj2)).toEqual({
