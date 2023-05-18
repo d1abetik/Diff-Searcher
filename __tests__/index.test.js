@@ -4,6 +4,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { difference, objDiff } from '../src/index.js';
 import { compare, stringifyObj } from '../src/difference.js';
+import { test } from 'node:test';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

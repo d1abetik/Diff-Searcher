@@ -12,6 +12,6 @@ program
   .arguments('<filepath1>', 'type path to your first file')
   .arguments('<filepath2>', 'type path to your second file')
   .action((path1, path2) => {
-    objDiff(path1, path2);
+    console.log(objDiff(path1, path2));
   });
 program.parse(process.argv);
