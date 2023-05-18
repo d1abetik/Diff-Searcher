@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { objDiff } from '../src/index.js';
+import objDiff from '../src/index.js';
 
 const program = new Command();
 

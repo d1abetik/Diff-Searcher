@@ -1,16 +1,6 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import parserPath from './parser.js';
-import buildTree from '../src/builder.js';
-import iter from '../src/formatter/stylish.js';
-
-const difference = (filepath1, filepath2) => {
-  const obj1 = JSON.parse(fs.readFileSync(path.resolve(filepath1)));
-  const obj2 = JSON.parse(fs.readFileSync(path.resolve(filepath2)));
-  const obj3 = compare(obj1, obj2);
-  const result = stringifyObj(obj3);
-  return result;
-};
+import buildTree from './builder.js';
+import iter from './formatter/stylish.js';
 
 const objDiff = (path1, path2) => {
   const obj1 = parserPath(path1);
@@ -20,7 +10,4 @@ const objDiff = (path1, path2) => {
   return result;
 };
 
-export {
-  difference,
-  objDiff,
-};
+export default objDiff;

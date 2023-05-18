@@ -3,13 +3,11 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import buildTree from './builder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (fileName) => path.join(__dirname, '..', '__fixtures__', fileName);
 const readFile = (fileName) => yaml.load(readFileSync(getFixturePath(fileName), 'utf-8'));
-
 
 const parserPath = (name) => {
   const indexName = path.extname(name);

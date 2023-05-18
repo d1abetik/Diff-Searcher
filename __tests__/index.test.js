@@ -2,9 +2,8 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { difference, objDiff } from '../src/index.js';
+import objDiff from '../src/index.js';
 import { compare, stringifyObj } from '../src/difference.js';
-import { test } from 'node:test';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,12 +37,6 @@ test('diffStep', () => {
   expect(stringifyObj(obj3)).toEqual(result);
   const obj4 = compare({}, {});
   expect(stringifyObj(obj4)).toEqual('{  \n}\n');
-});
-
-test('gendiff', () => {
-  const filepath3 = getFixturePath('file1.json');
-  const filepath4 = getFixturePath('file2.json');
-  expect(difference(filepath3, filepath4)).toEqual(result);
 });
 
 test('objDiff', () => {
