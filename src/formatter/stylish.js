@@ -20,7 +20,7 @@ const iter = (obj) => {
     key, type, children, children1, children2,
   }) => {
     if (type === 'nested') {
-      return `${getIndent(depth)}  ${key}: {\n${res(children, depth + 1).join('\n')}\n${getIndent(depth)}${doubleSpace}\n}`;
+      return `${getIndent(depth)}  ${key}: {\n${res(children, depth + 1).join('\n')}\n${getIndent(depth)}${doubleSpace}}`;
     }
     if (type === 'added') {
       return `${getIndent(depth)}+ ${key}: ${stringifyObj(children, depth)}`;
@@ -36,7 +36,7 @@ const iter = (obj) => {
     }
     return undefined;
   });
-  return `{\n${res(obj, 1).join('\n')}\n}`;
+  return `{\n${res(obj, 1).join('\n')}\n}\n`;
 };
 
 export default iter;
