@@ -22,7 +22,7 @@ const parserPath = (name) => {
     case '.yaml':
       return readFile(name);
     default:
-      return readFile(name);
+      return undefined;
   }
 };
 

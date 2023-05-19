@@ -19,7 +19,7 @@ const iter = (obj) => {
   const res = (node, depth) => node.flatMap(({
     key, type, children, children1, children2,
   }) => {
-    switch (type){
+    switch (type) {
       case 'nested':
         return `${getIndent(depth)}  ${key}: {\n${res(children, depth + 1).join('\n')}\n${getIndent(depth)}${doubleSpace}}`;
       case 'added':
