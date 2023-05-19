@@ -2,7 +2,7 @@ import parserPath from './parser.js';
 import buildTree from './builder.js';
 import choser from './formatter/index.js';
 
-const objDiff = (formatter, path1, path2) => {
+const objDiff = (path1, path2, formatter) => {
   const obj1 = parserPath(path1);
   const obj2 = parserPath(path2);
   const obj3 = buildTree(obj1, obj2);
