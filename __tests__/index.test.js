@@ -52,7 +52,6 @@ test('json formatter fir diffs', () => {
   const path1 = parserPath(filepath1);
   const path2 = parserPath(filepath2);
   const obj3 = buildTree(path1, path2);
-  
   expect(json(obj3)).toEqual(JSON.stringify(obj3, null, 2));
 
   expect(json({})).toEqual(JSON.stringify({}, null, 2));
