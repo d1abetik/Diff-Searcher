@@ -33,6 +33,10 @@ test('stylish for diffs', () => {
   const obj3 = buildTree(path1, path2);
 
   expect(iter(obj3)).toEqual(result);
+
+  const obj4 = buildTree(path1, path1);
+  const res1 = readFile('testSame1.txt');
+  expect(iter(obj4)).toEqual(res1);
 });
 
 test('plain for diffs', () => {
@@ -44,6 +48,9 @@ test('plain for diffs', () => {
   const res = readFile('testPlain.txt');
 
   expect(`${plain(obj3)}\n`).toEqual(res);
+
+  const obj4 = buildTree(path1, path1);
+  expect(plain(obj4)).toEqual('\n\n');
 });
 
 test('json formatter for diffs', () => {
@@ -52,7 +59,11 @@ test('json formatter for diffs', () => {
   const path1 = parserPath(filepath1);
   const path2 = parserPath(filepath2);
   const obj3 = buildTree(path1, path2);
-  expect(json(obj3)).toEqual(JSON.stringify(obj3, null, 2));
+  expect(json(obj3)).toEqual(`${JSON.stringify(obj3, null, 2)}\n`);
 
-  expect(json({})).toEqual(JSON.stringify({}, null, 2));
+  expect(json({})).toEqual(`${JSON.stringify({}, null, 2)}\n`);
+
+  const obj4 = buildTree(path1, path1);
+  const res2 = readFile('testSame2.txt');
+  expect(json(obj4)).toEqual(res2);
 });
