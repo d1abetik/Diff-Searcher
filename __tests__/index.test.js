@@ -46,7 +46,7 @@ test('plain for diffs', () => {
   expect(`${plain(obj3)}\n`).toEqual(res);
 });
 
-test('json formatter fir diffs', () => {
+test('json formatter for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
   const path1 = parserPath(filepath1);

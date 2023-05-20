@@ -1,3 +1,22 @@
+# FAQ #
+
+- Для установки игры вам потребуеться GIT : sudo apt install git;
+
+- Проверьте последнюю версию git командой: git -v (--version);
+
+- Копируем репозиторий к себе командой: git clone https://github.com/d1abetik/frontend-project-46.git
+
+- Переходим к корневой директории игр: cd frontend-project-46;
+
+### Чтобы установить игру вам потребуется ввести следующую последовательность команд: ###
+```
+make install
+make link
+gendiff -h //Поможет разобраться в системе приложения
+```
+
+---
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/d1abetik/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/d1abetik/frontend-project-46/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fe4ac3fe242874be8304/maintainability)](https://codeclimate.com/github/d1abetik/frontend-project-46/maintainability)
