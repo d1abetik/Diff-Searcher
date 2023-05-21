@@ -34,7 +34,7 @@ const iter = (obj) => {
         return undefined;
     }
   });
-  return `{\n${res(obj, 1).join('\n')}\n}\n`;
+  return `{\n${res(obj, 1).join('\n')}\n}`;
 };
 
 export default iter;

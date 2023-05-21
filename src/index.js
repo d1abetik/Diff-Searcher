@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
+// import { fileURLToPath } from 'url';
 import parserPath from './parser.js';
 import buildTree from './builder.js';
 import choser from './formatter/index.js';

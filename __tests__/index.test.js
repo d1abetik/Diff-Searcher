@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import objDiff from '../src/index.js';
 import iter from '../src/formatter/stylish.js';
@@ -20,7 +19,7 @@ const result = readFile('testResult.txt');
 test('objDiff', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
-  expect(objDiff(filepath1, filepath2)).toEqual(result);
+  expect(objDiff(filepath1, filepath2)).toEqual(readFile('testResult.txt'));
 });
 
 test('stylish for diffs', () => {
@@ -45,7 +44,7 @@ test('plain for diffs', () => {
   const obj3 = buildTree(path1, path2);
   const res = readFile('testPlain.txt');
 
-  expect(`${plain(obj3)}\n`).toEqual(res);
+  expect(plain(obj3)).toEqual(res);
 
   const obj4 = buildTree(path1, path1);
   expect(plain(obj4)).toEqual('\n\n');
@@ -57,9 +56,9 @@ test('json formatter for diffs', () => {
   const path1 = parserPath(readFile(filepath1), filepath1);
   const path2 = parserPath(readFile(filepath2), filepath2);
   const obj3 = buildTree(path1, path2);
-  expect(json(obj3)).toEqual(`${JSON.stringify(obj3, null, 2)}\n`);
+  expect(json(obj3)).toEqual(`${JSON.stringify(obj3, null, 2)}`);
 
-  expect(json({})).toEqual(`${JSON.stringify({}, null, 2)}\n`);
+  expect(json({})).toEqual(`${JSON.stringify({}, null, 2)}`);
 
   const obj4 = buildTree(path1, path1);
   const res2 = readFile('testSame2.txt');
