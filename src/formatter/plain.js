@@ -4,7 +4,7 @@ const stringifyObj = (obj) => {
   if (_.isObject(obj)) {
     return '[complex value]';
   }
-  return typeof obj === 'string' ? `${obj}` : String(obj);
+  return typeof obj === 'string' ? `'${obj}'` : String(obj);
 };
 
 const plain = (obj, key = '') => {
@@ -21,7 +21,7 @@ const plain = (obj, key = '') => {
         case 'deleted':
           return `Property '${path}' was removed`;
         case 'changed':
-          return `Property '${path}' was updated. From '${stringifyObj(node.children1)}' to '${stringifyObj(node.children2)}'`;
+          return `Property '${path}' was updated. From ${stringifyObj(node.children1)} to ${stringifyObj(node.children2)}`;
         default:
           return undefined;
       }
