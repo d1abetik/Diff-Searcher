@@ -18,8 +18,8 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 const result = readFile('testResult.txt');
 
 test('objDiff', () => {
-  const filepath1 = 'file1.json';
-  const filepath2 = 'file2.json';
+  const filepath1 = getFixturePath('file1.json');
+  const filepath2 = getFixturePath('file2.json');
   expect(objDiff(filepath1, filepath2)).toEqual(result);
 });
 

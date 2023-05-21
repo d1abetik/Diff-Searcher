@@ -3,9 +3,6 @@ import path from 'node:path';
 
 const parserPath = (data, name) => {
   const indexName = path.extname(name);
-  if (indexName === '' || indexName === undefined) {
-    return '';
-  }
   switch (indexName) {
     case '.json':
       return JSON.parse(data);
