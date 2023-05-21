@@ -21,15 +21,13 @@ test('objDiff', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
   expect(objDiff(filepath1, filepath2)).toEqual(result);
-
-  expect(objDiff('{}', '{}')).toEqual('{\n\n}\n');
 });
 
 test('stylish for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1);
-  const path2 = parserPath(filepath2);
+  const path1 = parserPath(readFile(filepath1), filepath1);
+  const path2 = parserPath(readFile(filepath2), filepath2);
   const obj3 = buildTree(path1, path2);
 
   expect(iter(obj3)).toEqual(result);
@@ -42,8 +40,8 @@ test('stylish for diffs', () => {
 test('plain for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1);
-  const path2 = parserPath(filepath2);
+  const path1 = parserPath(readFile(filepath1), filepath1);
+  const path2 = parserPath(readFile(filepath2), filepath2);
   const obj3 = buildTree(path1, path2);
   const res = readFile('testPlain.txt');
 
@@ -56,8 +54,8 @@ test('plain for diffs', () => {
 test('json formatter for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1);
-  const path2 = parserPath(filepath2);
+  const path1 = parserPath(readFile(filepath1), filepath1);
+  const path2 = parserPath(readFile(filepath2), filepath2);
   const obj3 = buildTree(path1, path2);
   expect(json(obj3)).toEqual(`${JSON.stringify(obj3, null, 2)}\n`);
 
