@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import objDiff from '../src/index.js';
+import formatDiff from '../src/index.js';
 import iter from '../src/formatter/stylish.js';
 import buildTree from '../src/builder.js';
 import parserPath from '../src/parser.js';
@@ -19,48 +19,48 @@ const result = readFile('testResult.txt');
 test('objDiff', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
-  expect(objDiff(filepath1, filepath2)).toEqual(readFile('testResult.txt'));
+  expect(formatDiff(filepath1, filepath2)).toEqual(readFile('testResult.txt'));
 });
 
 test('stylish for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(readFile(filepath1), filepath1);
-  const path2 = parserPath(readFile(filepath2), filepath2);
-  const obj3 = buildTree(path1, path2);
+  const path1 = parserPath(filepath1)(readFile(filepath1));
+  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const diffTree1 = buildTree(path1, path2);
 
-  expect(iter(obj3)).toEqual(result);
+  expect(iter(diffTree1)).toEqual(result);
 
-  const obj4 = buildTree(path1, path1);
+  const diffTree2 = buildTree(path1, path1);
   const res1 = readFile('testSame1.txt');
-  expect(iter(obj4)).toEqual(res1);
+  expect(iter(diffTree2)).toEqual(res1);
 });
 
 test('plain for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(readFile(filepath1), filepath1);
-  const path2 = parserPath(readFile(filepath2), filepath2);
-  const obj3 = buildTree(path1, path2);
+  const path1 = parserPath(filepath1)(readFile(filepath1));
+  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const diffTree1 = buildTree(path1, path2);
   const res = readFile('testPlain.txt');
 
-  expect(plain(obj3)).toEqual(res);
+  expect(plain(diffTree1)).toEqual(res);
 
-  const obj4 = buildTree(path1, path1);
-  expect(plain(obj4)).toEqual('\n\n');
+  const diffTree2 = buildTree(path1, path1);
+  expect(plain(diffTree2)).toEqual('\n\n');
 });
 
 test('json formatter for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(readFile(filepath1), filepath1);
-  const path2 = parserPath(readFile(filepath2), filepath2);
-  const obj3 = buildTree(path1, path2);
-  expect(json(obj3)).toEqual(`${JSON.stringify(obj3, null, 2)}`);
+  const path1 = parserPath(filepath1)(readFile(filepath1));
+  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const diffTree1 = buildTree(path1, path2);
+  expect(json(diffTree1)).toEqual(`${JSON.stringify(diffTree1, null, 2)}`);
 
   expect(json({})).toEqual(`${JSON.stringify({}, null, 2)}`);
 
-  const obj4 = buildTree(path1, path1);
+  const diffTree2 = buildTree(path1, path1);
   const res2 = readFile('testSame2.txt');
-  expect(json(obj4)).toEqual(res2);
+  expect(json(diffTree2)).toEqual(res2);
 });

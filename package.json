@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "hexlet",
+  "description": "Difference File Generator",
   "main": "src/index.js",
   "type": "module",
   "bin": {
