@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import formatDiff from '../src/index.js';
+import resultDiff from '../src/index.js';
 import iter from '../src/formatter/stylish.js';
 import buildTree from '../src/builder.js';
 import parserPath from '../src/parser.js';
@@ -11,6 +11,7 @@ import json from '../src/formatter/json.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const getExtension = (filePath) => path.extname(filePath).slice(1);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
@@ -19,14 +20,14 @@ const result = readFile('testResult.txt');
 test('objDiff', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
-  expect(formatDiff(filepath1, filepath2)).toEqual(readFile('testResult.txt'));
+  expect(resultDiff(filepath1, filepath2)).toEqual(readFile('testResult.txt'));
 });
 
 test('stylish for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1)(readFile(filepath1));
-  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const path1 = parserPath(readFile(filepath1), getExtension(filepath1));
+  const path2 = parserPath(readFile(filepath2), getExtension(filepath2));
   const diffTree1 = buildTree(path1, path2);
 
   expect(iter(diffTree1)).toEqual(result);
@@ -39,8 +40,8 @@ test('stylish for diffs', () => {
 test('plain for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1)(readFile(filepath1));
-  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const path1 = parserPath(readFile(filepath1), getExtension(filepath1));
+  const path2 = parserPath(readFile(filepath2), getExtension(filepath2));
   const diffTree1 = buildTree(path1, path2);
   const res = readFile('testPlain.txt');
 
@@ -53,8 +54,8 @@ test('plain for diffs', () => {
 test('json formatter for diffs', () => {
   const filepath1 = 'file1.json';
   const filepath2 = 'file2.json';
-  const path1 = parserPath(filepath1)(readFile(filepath1));
-  const path2 = parserPath(filepath2)(readFile(filepath2));
+  const path1 = parserPath(readFile(filepath1), getExtension(filepath1));
+  const path2 = parserPath(readFile(filepath2), getExtension(filepath2));
   const diffTree1 = buildTree(path1, path2);
   expect(json(diffTree1)).toEqual(`${JSON.stringify(diffTree1, null, 2)}`);
 

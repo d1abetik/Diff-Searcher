@@ -2,7 +2,7 @@ import plain from './plain.js';
 import iter from './stylish.js';
 import json from './json.js';
 
-const choser = (obj, formatter) => {
+const formatDiff = (obj, formatter) => {
   switch (formatter) {
     case 'plain':
       return plain(obj);
@@ -13,4 +13,4 @@ const choser = (obj, formatter) => {
   }
 };
 
-export default choser;
+export default formatDiff;
